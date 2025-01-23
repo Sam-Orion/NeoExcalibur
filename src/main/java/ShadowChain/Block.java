@@ -9,7 +9,7 @@ public class Block {
     public String previousHash;
     public String merkleRoot;
     public ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    private long timeStamp;
+    private final long timeStamp;
     private int nonce;
 
     public Block (String previousHash) {
@@ -20,13 +20,12 @@ public class Block {
     }
 
     public String calculateHash() {
-        String calculatedHash = StringUtil.applySha256(
+        return StringUtil.applySha256(
                                     previousHash +
                                     Long.toString(timeStamp) +
                                     Integer.toString(nonce) +
                                     merkleRoot
                                 );
-        return calculatedHash;
     }
 
     public void mineBlock (int difficulty) {
