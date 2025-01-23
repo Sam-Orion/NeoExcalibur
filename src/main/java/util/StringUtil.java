@@ -40,8 +40,7 @@ public class StringUtil {
             dsa.initSign(privateKey);
             byte[] strByte = input.getBytes();
             dsa.update(strByte);
-            byte[] realSig = dsa.sign();
-            output = realSig;
+            output = dsa.sign();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -81,7 +80,6 @@ public class StringUtil {
             count = treeLayer.size();
             previousTreeLayer = treeLayer;
         }
-        String merkleRoot = (treeLayer.size() == 1) ? treeLayer.get(0) : "";
-        return merkleRoot;
+        return (treeLayer.size() == 1) ? treeLayer.getFirst() : "";
     }
 }
