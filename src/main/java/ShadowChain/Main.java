@@ -21,7 +21,7 @@ public class Main {
         Block previousBlock;
         String hashTarget = new String(new char[difficulty]).replace('\0', '0');
         HashMap<String, TransactionOutput> tempUTXOs = new HashMap<String, TransactionOutput>();
-        tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
+        tempUTXOs.put(genesisTransaction.outputs.getFirst().id, genesisTransaction.outputs.getFirst());
 
         for (int i = 1; i < blockchain.size(); i++) {
             currentBlock = blockchain.get(i);
@@ -107,7 +107,7 @@ public class Main {
         genesisTransaction.generateSignature(coinbase.privateKey);
         genesisTransaction.transactionID = "0";
         genesisTransaction.outputs.add(new TransactionOutput(genesisTransaction.recipient, genesisTransaction.value, genesisTransaction.transactionID));
-        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
+        UTXOs.put(genesisTransaction.outputs.getFirst().id, genesisTransaction.outputs.getFirst());
 
         System.out.println("Creating and Mining Genesis block...");
         Block genesis = new Block("0");
